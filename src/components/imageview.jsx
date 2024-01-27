@@ -105,13 +105,7 @@ import '../index.css'
     const [isSpinning, setIsSpinning] = useState(false);
 
     
-    // useEffect(() => {
-    //     if (isSpinning) {
-    //         const intervalId = setInterval(spin, 1000); // Change the interval duration as needed
-
-    //         return () => clearInterval(intervalId);
-    //     }
-    // }, [isSpinning]);
+   
 
     const spin = () => {
         setIsSpinning(true);
