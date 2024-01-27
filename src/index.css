@@ -1,0 +1,66 @@
+body{
+   background-color: aliceblue;
+}
+.html{
+  font-size: 1.125rem;
+}
+.images{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10;
+  
+}
+.title{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+.spin-button{
+  text-align: center;
+  border-radius: 100px;
+  background-color: aqua;
+  cursor: pointer;
+}
+.spin-button:active{
+  animation: spin .1s linear backwards infinite;
+}
+.btn-action{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap:5rem;
+  color:red;
+}
+
+.resultDisplay{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: aqua;
+  gap:5rem;
+  border: 1px solid red;
+  padding: 0 2rem;
+}
+.result{
+  font-size: 2rem;
+  color:rgb(186, 4, 68)
+}
+.spin{
+  animation: spin .2s 3 linear ;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
