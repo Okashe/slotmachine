@@ -37,7 +37,8 @@ body{
 .spin-button{
   border: none;
   border-radius: 50%;
-  background-color: white;
+  background-color: transparent;
+  box-shadow:inset;
 }
 .spin-button:active{
   animation: spin .1s linear backwards infinite;

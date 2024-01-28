@@ -169,6 +169,7 @@ import '../index.css'
     setImage2(images[1])
     setImage3(images[2])
     setIsSpinning(false)
+    setInfo('')
    }
   
 return (
