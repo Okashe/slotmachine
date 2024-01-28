@@ -177,9 +177,9 @@ return (
             {/* <img className="" src={getRandomElement(randomImages.IMAGE1)} alt="Random Image 1" />
             <img src={getRandomElement(randomImages.IMAGE2)} alt="Random Image 2" />
             <img src={getRandomElement(randomImages.IMAGE3)} alt="Random Image 3" /> */}
-            <img className={`imgOne ${isSpinning ? "spin" : ""}`} src={image1} alt="Image 1" />
-            <img className={`imageTwo ${isSpinning ? "spin" : ""}`} src={image2} alt="Image 2" />
-            <img className={`imageThree ${isSpinning ? "spin" : ""}`} src={image3} alt="Image 3" />
+            <img className={`imgOne ${isSpinning ? "spin" : ""}`} src={image1} alt="" />
+            <img className={`imageTwo ${isSpinning ? "spin" : ""}`} src={image2} alt="" />
+            <img className={`imageThree ${isSpinning ? "spin" : ""}`} src={image3} alt="" />
         </div>
          {/* Input for bet amount */}
         <div>
