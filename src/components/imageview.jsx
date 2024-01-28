@@ -184,7 +184,7 @@ return (
          {/* Input for bet amount */}
         <div>
          <p>How much are you betting?</p>
-         <span>$</span><input
+         $<input
                 type="number"
                 value={bet>=0?bet:0}
                 onChange={(e) => setBet(parseFloat(e.target.value))}
