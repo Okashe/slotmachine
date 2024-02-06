@@ -95,7 +95,7 @@ import '../index.css'
     const [image3, setImage3] = useState(localStorage.getItem("image3")||images[2])
     const [isSpinning, setIsSpinning] = useState(false);
     const [info, setInfo] = useState('')
-    const [currentTurn, setCurrentTurn] = useState(localStorage.getItem('human')||'computer')
+    const [currentTurn, setCurrentTurn] = useState(localStorage.getItem('human'))
     const [turnTeller, setTurnTeller] = useState('You start the game. bet & Spin!')
     const [winner , setWinner]=useState('')
    
@@ -239,18 +239,18 @@ import '../index.css'
     }
 } ,[currentTurn]);
 
-useEffect(()=>{
-   if( totalWonComputer === 100 && totalWonComputer > totalWon){
-       setWinner('Computer has won!')
-       reset()
-   }else if( totalWonComputer === 100 && totalWon === 100 ){
-    setWinner('It\'s a draw!')
-     reset()
-   }else if(totalWon === 100 && totalWon > totalWonComputer){
-     setWinner('You have won!')
-     reset()
-   }
-})
+// useEffect(()=>{
+//    if( totalWonComputer === 100 && totalWonComputer > totalWon){
+//        setWinner('Computer has won!')
+//        reset()
+//    }else if( totalWonComputer === 100 && totalWon === 100 ){
+//     setWinner('It\'s a draw!')
+//      reset()
+//    }else if(totalWon === 100 && totalWon > totalWonComputer){
+//      setWinner('You have won!')
+//      reset()
+//    }
+// },[totalWonComputer,totalWon,amountWon,amountWonComputer,winner])
   
 return (
       <div className="container">
@@ -265,15 +265,17 @@ return (
         </div>
         <div>
          <p className="turn">{turnTeller}</p>
-         <p>{totalWon >= 100||totalWonComputer >= 100 ? winner:''}</p>
+         <p>{winner}</p>
         </div>
        
          {/* Input for bet amount */}
-        <div>
+        <div className="input">
          <p>How much are you betting?</p>
          $<input
                 type="number"
-                value={bet>=0?bet:0}
+                max={10}
+                min={1}
+                value={bet}
                 onChange={(e) => setBet(parseFloat(e.target.value))}
                 disabled={currentTurn==='computer'}
             />
@@ -281,8 +283,8 @@ return (
         </div> 
         
         <div className="btn-action">spin <button
-              className={`spin-button ${currentTurn === 'human' && '.active'}`}
-              onClick={currentTurn === 'human' && spin}
+              className={`spin-button ${currentTurn === 'human'? 'active':''}`}
+              onClick={currentTurn === 'human' ? spin : null}
               disabled={currentTurn === 'computer'}
           >
            <LifebuoyIcon color="blue" className="spin-icon" />
@@ -295,7 +297,6 @@ return (
 
         </div>
         
-        
         <div className="resultDisplay">
           <div>
             <h1>User result</h1>
@@ -305,6 +306,7 @@ return (
               <p className="result">
                   Total amount:  ${totalWon}
               </p>
+              <p>{totalWon>=50&&totalWon>totalWonComputer?'You won!!':''}</p>
           </div>
           <div>
             <h1>Computer result</h1>
@@ -314,6 +316,7 @@ return (
               <p className="result">
                   Total amount:  ${totalWonComputer}
               </p>
+              <p>{totalWonComputer>=50&&totalWon<totalWonComputer?'Computer Won!!':''}</p>
           </div>
            
         </div>

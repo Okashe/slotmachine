@@ -1,6 +1,6 @@
 body{
-   background-color: #040e1f;
-   color:white;
+   background-color: #000000;
+   
 }
 .html{
   font-size: 1.125rem;
@@ -24,6 +24,7 @@ body{
 .title{
   text-align: center;
   margin-bottom: 2rem;
+  color:gainsboro;
 }
 .container{
   display: flex;
@@ -60,9 +61,11 @@ body{
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(45, 43, 43);
+  border-radius: 30px;
   gap:5rem;
   padding: 0 2rem;
-  margin-bottom: 2rem;
+  margin-top: auto;
+  color:aqua;
 }
 .result{
   font-size: 1.2rem;
@@ -75,6 +78,9 @@ body{
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+}
+.input{
+  text-align: center;
 }
 .turn{
   color:green;
