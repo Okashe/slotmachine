@@ -245,11 +245,11 @@ useEffect(()=>{
 
 const declareWinner =()=>{
   let winInfo=''
-  if( totalWonComputer>=50&&totalWon<totalWonComputer){
+  if( totalWonComputer>=100&&totalWon<totalWonComputer){
     winInfo='Computer Won!'
     
     
-  }else if(totalWon>=50&&totalWonComputer<totalWon){
+  }else if(totalWon>=100&&totalWonComputer<totalWon){
     winInfo='User won!'
 
   
