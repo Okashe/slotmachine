@@ -239,18 +239,26 @@ import '../index.css'
     }
 } ,[currentTurn]);
 
-// useEffect(()=>{
-//    if( totalWonComputer === 100 && totalWonComputer > totalWon){
-//        setWinner('Computer has won!')
-//        reset()
-//    }else if( totalWonComputer === 100 && totalWon === 100 ){
-//     setWinner('It\'s a draw!')
-//      reset()
-//    }else if(totalWon === 100 && totalWon > totalWonComputer){
-//      setWinner('You have won!')
-//      reset()
-//    }
-// },[totalWonComputer,totalWon,amountWon,amountWonComputer,winner])
+useEffect(()=>{
+   declareWinner()
+})
+
+const declareWinner =()=>{
+  let winInfo=''
+  if( totalWonComputer>=50&&totalWon<totalWonComputer){
+    winInfo='Computer Won!'
+    
+    
+  }else if(totalWon>=50&&totalWonComputer<totalWon){
+    winInfo='User won!'
+
+  
+  }
+
+  setWinner(winInfo)
+  
+}
+
   
 return (
       <div className="container">
@@ -264,20 +272,20 @@ return (
             <img className={`imageThree ${isSpinning ? "spin" : ""}`} src={image3} alt="" />
         </div>
         <div>
-         <p className="turn">{turnTeller}</p>
-         <p>{winner}</p>
+         <p className="turn">{winner===''?turnTeller:'Game Over!'}</p>
         </div>
        
          {/* Input for bet amount */}
         <div className="input">
-         <p>How much are you betting?</p>
+         <p>Set a bet!</p>
          $<input
+                
                 type="number"
                 max={10}
                 min={1}
                 value={bet}
                 onChange={(e) => setBet(parseFloat(e.target.value))}
-                disabled={currentTurn==='computer'}
+                disabled={currentTurn==='computer'||winner!==''}
             />
             <p className="info">{info}</p>
         </div> 
@@ -285,7 +293,7 @@ return (
         <div className="btn-action">spin <button
               className={`spin-button ${currentTurn === 'human'? 'active':''}`}
               onClick={currentTurn === 'human' ? spin : null}
-              disabled={currentTurn === 'computer'}
+              disabled={currentTurn === 'computer'||winner!==''}
           >
            <LifebuoyIcon color="blue" className="spin-icon" />
          </button>
@@ -306,7 +314,7 @@ return (
               <p className="result">
                   Total amount:  ${totalWon}
               </p>
-              <p>{totalWon>=50&&totalWon>totalWonComputer?'You won!!':''}</p>
+            
           </div>
           <div>
             <h1>Computer result</h1>
@@ -316,7 +324,10 @@ return (
               <p className="result">
                   Total amount:  ${totalWonComputer}
               </p>
-              <p>{totalWonComputer>=50&&totalWon<totalWonComputer?'Computer Won!!':''}</p>
+             
+          </div>
+          <div className="">
+            <p className={winner!==''&&'win'}>{winner}</p>
           </div>
            
         </div>

@@ -12,9 +12,8 @@ body{
   gap: 10;
   border-radius: 100px;
   background-color: rgb(49, 48, 48);
-  color: aqua;
   padding: 2rem;
-  border: 1px solid white;
+  border: 1px solid orangered;
 }
 .images img{
  border-radius: 50%;
@@ -88,6 +87,19 @@ body{
   text-align: center;
   font-size: 1.125rem;
   font-weight: bold;
+}
+.win{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color:rgb(255, 255, 255);
+  background-color: rgba(30, 244, 40, 0.5);
+  padding: 1.5rem;
+  margin-right: auto;
+  border-radius: 30px;
+  transition: all ease-in-out;
+  font-size: 1.35rem;
+  font-weight: 700;
 }
 
 @keyframes spin {
