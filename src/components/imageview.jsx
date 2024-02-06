@@ -96,7 +96,7 @@ import '../index.css'
     const [isSpinning, setIsSpinning] = useState(false);
     const [info, setInfo] = useState('')
     const [currentTurn, setCurrentTurn] = useState(localStorage.getItem('human')||'computer')
-    const [turnTeller, setTurnTeller] = useState('It is your turn. bet & Spin!')
+    const [turnTeller, setTurnTeller] = useState('You start the game. bet & Spin!')
     const [winner , setWinner]=useState('')
    
     
@@ -169,6 +169,7 @@ import '../index.css'
     setImage3(images[2])
     setIsSpinning(false)
     setInfo('')
+    setTurnTeller('You start the game. bet & Spin!')
     setCurrentTurn('human')
    }
 
@@ -222,20 +223,21 @@ import '../index.css'
 
         // Stop spinning animation
         setIsSpinning(false);
-        setTurnTeller('It\'s your turn')
+        setTimeout(()=>{
+          setTurnTeller('It\'s your turn!')
+        },1000)
+       
+        
     }, 3000); // Adjust the duration of the spinning animation as needed
     
-   
-   
-   
 };
-   useEffect(() => {
+  useEffect(() => {
     // Check if it's the computer's turn
     if (currentTurn === 'computer') {
         // Execute the computer's turn
         computerTurn();
     }
-}, [currentTurn]);
+} ,[currentTurn]);
 
 useEffect(()=>{
    if( totalWonComputer === 100 && totalWonComputer > totalWon){
@@ -243,12 +245,12 @@ useEffect(()=>{
        reset()
    }else if( totalWonComputer === 100 && totalWon === 100 ){
     setWinner('It\'s a draw!')
-    reset()
+     reset()
    }else if(totalWon === 100 && totalWon > totalWonComputer){
      setWinner('You have won!')
      reset()
    }
-},[totalWon,totalWonComputer,amountWon,amountWonComputer])
+})
   
 return (
       <div className="container">
@@ -262,7 +264,7 @@ return (
             <img className={`imageThree ${isSpinning ? "spin" : ""}`} src={image3} alt="" />
         </div>
         <div>
-         <p>{turnTeller}</p>
+         <p className="turn">{turnTeller}</p>
          <p>{totalWon >= 100||totalWonComputer >= 100 ? winner:''}</p>
         </div>
        
@@ -278,13 +280,13 @@ return (
             <p className="info">{info}</p>
         </div> 
         
-        <div className="btn-action">spin<button
-              className={`spin-button ${currentTurn === 'human' && 'spin-button:active'}`}
+        <div className="btn-action">spin <button
+              className={`spin-button ${currentTurn === 'human' && '.active'}`}
               onClick={currentTurn === 'human' && spin}
               disabled={currentTurn === 'computer'}
           >
-        <LifebuoyIcon color="blue" className="spin-icon" />
-     </button>
+           <LifebuoyIcon color="blue" className="spin-icon" />
+         </button>
             
             <button className="spin-button" onClick={reset} >
                 <ArrowPathIcon color="blue" className="spin-icon"/>

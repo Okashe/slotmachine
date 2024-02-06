@@ -76,6 +76,13 @@ body{
   height: 2rem;
   cursor: pointer;
 }
+.turn{
+  color:green;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
 
 @keyframes spin {
   0% {
