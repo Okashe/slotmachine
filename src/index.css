@@ -11,6 +11,10 @@ body{
   justify-content: space-around;
   gap: 10;
   border-radius: 100px;
+  background-color: rgb(49, 48, 48);
+  color: aqua;
+  padding: 2rem;
+  border: 1px solid white;
 }
 .images img{
  border-radius: 50%;
@@ -23,7 +27,7 @@ body{
 }
 .container{
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
   gap: 6rem;
@@ -61,7 +65,7 @@ body{
   margin-bottom: 2rem;
 }
 .result{
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 .spin{
   animation: spin .2s 3 linear ;
