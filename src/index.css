@@ -1,6 +1,6 @@
 body{
-   background-color: whitesmoke;
-   
+   background-color: rgb(72, 72, 72);
+   color:white;
 }
 .html{
   font-size: 1.125rem;
@@ -8,9 +8,9 @@ body{
 .images{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  gap: 10;
-  border-radius: 100px;
+  justify-content: space-between;
+  gap: 20;
+  border-radius: 1rem;
   background-color: rgb(49, 48, 48);
   padding: 2rem;
   border: 1px solid orangered;
@@ -23,7 +23,6 @@ body{
 .title{
   text-align: center;
   margin-bottom: 2rem;
-  color:rgb(0, 0, 0);
 }
 .container{
   display: flex;
@@ -46,6 +45,7 @@ body{
 }
 .spin-button:active{
   animation: spin .1s linear backwards infinite;
+  opacity: .1;
 }
 .btn-action{
   display: flex;
@@ -82,7 +82,7 @@ body{
   text-align: center;
 }
 .turn{
-  color:green;
+  color:rgb(250, 238, 4);
   border: 1px solid white;
   text-align: center;
   font-size: 1.125rem;

@@ -85,7 +85,7 @@ import '../index.css'
 
     const images = fruits; // Assuming fruits is an array of image URLs
 
-    const [bet, setBet] = useState(parseFloat(localStorage.getItem("bet")) || 0);
+    const [bet, setBet] = useState(parseFloat(localStorage.getItem("bet")) || 1);
     const [amountWon, setAmountWon] = useState(parseFloat(localStorage.getItem("amountWon"))||0);
     const [totalWon, setTotalWon] = useState(parseFloat(localStorage.getItem("totalWon"))||0);
     const [amountWonComputer, setAmountWonComputer] = useState(parseFloat(localStorage.getItem("amountWonComputer"))||0);
@@ -93,10 +93,16 @@ import '../index.css'
     const [image1, setImage1] = useState(localStorage.getItem("image1")||images[0])
     const [image2, setImage2] = useState(localStorage.getItem("image2")||images[1])
     const [image3, setImage3] = useState(localStorage.getItem("image3")||images[2])
-    const [isSpinning, setIsSpinning] = useState(false);
+    const [isSpinning, setIsSpinning] = useState('false');
     const [info, setInfo] = useState('')
-    const [currentTurn, setCurrentTurn] = useState(localStorage.getItem('human'))
-    const [turnTeller, setTurnTeller] = useState('You start the game. bet & Spin!')
+    const [currentTurn, setCurrentTurn] = useState(() => {
+        const storedCurrentTurn = localStorage.getItem('currentTurn');
+        return storedCurrentTurn ? storedCurrentTurn : 'human';
+     });
+     const [turnTeller, setTurnTeller] = useState(() => {
+      const storedTurnTeller = localStorage.getItem('turnTeller');
+      return storedTurnTeller ? storedTurnTeller : (currentTurn === 'human' ? "It's your turn!" : "It's computer's turn!");
+  });
     const [winner , setWinner]=useState('')
    
     
@@ -110,7 +116,8 @@ import '../index.css'
         localStorage.setItem('amountWonComputer', amountWonComputer.toString())
         localStorage.setItem('totalWonComputer', totalWonComputer.toString())
         localStorage.setItem('currentTurn', currentTurn)
-      }, [bet,amountWon, totalWon, image1, image2,image3,amountWonComputer,totalWonComputer,currentTurn]);
+        localStorage.setItem('turnTeller',turnTeller)
+      }, [bet,amountWon, totalWon, image1, image2,image3,amountWonComputer,totalWonComputer,currentTurn,turnTeller]);
 
     const spin = () => {
         if(bet===0){
@@ -159,7 +166,7 @@ import '../index.css'
     };
 
    const reset =()=>{
-    setBet(0)
+    setBet(1)
     setAmountWon(0)
     setTotalWon(0)
     setAmountWonComputer(0)
@@ -186,11 +193,14 @@ import '../index.css'
 
     // Trigger spinning animation for the computer's turn
     
-    setIsSpinning(true);
-     setInfo('')
+    
+    setInfo('')
 
     // Simulate spinning animation for a certain duration
     setTimeout(() => {
+
+        
+     
         // Generate random images for the result of the spin
         const randomIndex = () => Math.floor(Math.random() * images.length);
         const index1 = randomIndex();
@@ -199,7 +209,11 @@ import '../index.css'
         const image1 = images[index1];
         const image2 = images[index2];
         const image3 = images[index3];
-
+        
+        setTimeout(()=>{
+          setIsSpinning(true);
+        },50)
+        
         // Update the displayed images
         setImage1(image1);
         setImage2(image2);
@@ -222,8 +236,12 @@ import '../index.css'
        
 
         // Stop spinning animation
-        setIsSpinning(false);
+        // setIsSpinning(false);
+       
+        
+       
         setTimeout(()=>{
+          setIsSpinning(false);
           setTurnTeller('It\'s your turn!')
         },1000)
        
@@ -236,11 +254,13 @@ import '../index.css'
     if (currentTurn === 'computer') {
         // Execute the computer's turn
         computerTurn();
+       
     }
 } ,[currentTurn]);
 
 useEffect(()=>{
    declareWinner()
+   
 })
 
 const declareWinner =()=>{
@@ -249,13 +269,17 @@ const declareWinner =()=>{
     winInfo='Computer Won!'
     
     
-  }else if(totalWon>=100&&totalWonComputer<totalWon){
+  }else if(totalWon >= 100 && totalWonComputer < totalWon){
     winInfo='User won!'
 
   
   }
-
+ 
   setWinner(winInfo)
+  setTimeout(()=>{
+    setIsSpinning(false)
+  },5000)
+  
   
 }
 
@@ -272,19 +296,25 @@ return (
             <img className={`imageThree ${isSpinning ? "spin" : ""}`} src={image3} alt="" />
         </div>
         <div>
-         <p className="turn">{winner===''?turnTeller:'Game Over!'}</p>
+         <p className="turn">{winner===''?turnTeller:'Game Over! Reset to replay'}</p>
         </div>
        
          {/* Input for bet amount */}
         <div className="input">
-         <p>Set a bet!</p>
+         <p>Set a bet! Only 1-10</p>
          $<input
                 
                 type="number"
                 max={10}
                 min={1}
                 value={bet}
-                onChange={(e) => setBet(parseFloat(e.target.value))}
+                onChange={(e) => {
+                  const value = parseFloat(e.target.value);
+                  if (value !== 0&&value<=10) {
+                      setBet(value);
+                  }
+                }}
+                readOnly={currentTurn === 'computer' || winner !== ''}
                 disabled={currentTurn==='computer'||winner!==''}
             />
             <p className="info">{info}</p>
@@ -295,11 +325,11 @@ return (
               onClick={currentTurn === 'human' ? spin : null}
               disabled={currentTurn === 'computer'||winner!==''}
           >
-           <LifebuoyIcon color="blue" className="spin-icon" />
+           <LifebuoyIcon color="orangered" className="spin-icon" />
          </button>
             
             <button className="spin-button" onClick={reset} >
-                <ArrowPathIcon color="blue" className="spin-icon"/>
+                <ArrowPathIcon color="orangered" className="spin-icon"/>
             </button>reset
         </div>
 
