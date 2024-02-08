@@ -338,33 +338,34 @@ return (
         
         <div className="resultDisplay">
           <div className="calculation">
-            <div className="result-container">
-              <h1>User result</h1>
-              <p className="result">
-                    Last points:  ${amountWon}
-                </p>
+              <div className="result-container">
+                <h1>User result</h1>
                 <p className="result">
-                    Total amount:  ${totalWon}
-                </p>
-              
-            </div>
-            <div className="divline"></div>
-            <div className="result-container">
-              <h1>Computer result</h1>
-              <p className="result">
-                    Last points:  ${amountWonComputer}
-                </p>
+                      Last points:  ${amountWon}
+                  </p>
+                  <p className="result">
+                      Total amount:  ${totalWon}
+                  </p>
+                
+              </div>
+              <div className="divline"></div>
+              <div className="declare">
+                 <p className={winner!==''&&'win'}>{winner}</p>
+              </div>
+              <div className="divline"></div>
+            
+              <div className="result-container">
+                <h1>Computer result</h1>
                 <p className="result">
-                    Total amount:  ${totalWonComputer}
-                </p>
-              
-            </div>
-            <div className="divline"></div>
+                      Last points:  ${amountWonComputer}
+                  </p>
+                  <p className="result">
+                      Total amount:  ${totalWonComputer}
+                  </p>
+                
+              </div>
           </div>
           
-          <div className="">
-            <p className={winner!==''&&'win'}>{winner}</p>
-          </div>
            
         </div>
       </div>
