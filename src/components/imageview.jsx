@@ -267,10 +267,11 @@ const declareWinner =()=>{
   let winInfo=''
   if( totalWonComputer>=100&&totalWon<totalWonComputer){
     winInfo='Computer Won!'
-    
+    setTotalWonComputer(100)
     
   }else if(totalWon >= 100 && totalWonComputer < totalWon){
     winInfo='User won!'
+    setTotalWon(100)
 
   
   }
@@ -336,26 +337,31 @@ return (
         </div>
         
         <div className="resultDisplay">
-          <div>
-            <h1>User result</h1>
-            <p className="result">
-                  Amount won:  ${amountWon}
-              </p>
+          <div className="calculation">
+            <div className="result-container">
+              <h1>User result</h1>
               <p className="result">
-                  Total amount:  ${totalWon}
-              </p>
-            
-          </div>
-          <div>
-            <h1>Computer result</h1>
-            <p className="result">
-                  Amount won:  ${amountWonComputer}
-              </p>
+                    Last points:  ${amountWon}
+                </p>
+                <p className="result">
+                    Total amount:  ${totalWon}
+                </p>
+              
+            </div>
+            <div className="divline"></div>
+            <div className="result-container">
+              <h1>Computer result</h1>
               <p className="result">
-                  Total amount:  ${totalWonComputer}
-              </p>
-             
+                    Last points:  ${amountWonComputer}
+                </p>
+                <p className="result">
+                    Total amount:  ${totalWonComputer}
+                </p>
+              
+            </div>
+            <div className="divline"></div>
           </div>
+          
           <div className="">
             <p className={winner!==''&&'win'}>{winner}</p>
           </div>

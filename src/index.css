@@ -1,23 +1,39 @@
+:root {
+  --input-border: #8b8a8b;
+  --input-focus-h: 245;
+  --input-focus-s: 100%;
+  --input-focus-l: 42%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body{
-   background-color: rgb(72, 72, 72);
+   background-color: rgb(38, 42, 44);
    color:white;
 }
 .html{
   font-size: 1.125rem;
 }
+
+
 .images{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 20;
   border-radius: 1rem;
-  background-color: rgb(49, 48, 48);
+  background-color: rgb(72, 145, 120);
   padding: 2rem;
   border: 1px solid orangered;
+  box-shadow: 3px 3px red, -1em 0 .4em olive;
 }
 .images img{
  border-radius: 50%;
  border: 2px solid red;
+ box-shadow: 3px 3px rgb(93, 135, 84), -1em 0 1em rgb(132, 132, 132);
 }
 
 .title{
@@ -32,6 +48,12 @@ body{
   gap: 6rem;
   margin-top: 0;
 }
+.game{
+  background-color: rgb(31, 31, 31);
+border-radius: 2rem;
+margin-bottom: 0;
+box-shadow: 3px 3px red, -1em 0 .4em olive;
+}
 
 .info{
   color: red;
@@ -44,8 +66,7 @@ body{
   box-shadow:inset;
 }
 .spin-button:active{
-  animation: spin .1s linear backwards infinite;
-  opacity: .1;
+  animation: spin .1s linear backwards reverse infinite;
 }
 .btn-action{
   display: flex;
@@ -59,15 +80,44 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: rgb(45, 43, 43);
+  background-color: rgb(33, 33, 43);
   border-radius: 30px;
   gap:5rem;
   padding: 0 2rem;
-  margin-top: auto;
-  color:aqua;
+  margin-bottom: 0;
+  color:rgb(218, 249, 249);
 }
 .result{
-  font-size: 1.2rem;
+  font-size: 1.125rem;
+  opacity: .7;
+}
+.result-container h1{
+  text-decoration: underline ;
+  font-size: large;
+}
+.calculation{
+  display: flex;
+  justify-content: space-between;
+  gap: 30;
+  box-shadow: 3px 3px red, -1em 0 .4em olive;
+}
+@media  screen and (max-width:768px) {
+    .resultDisplay{
+      flex-direction: column;
+      padding: 1.2rem;
+    }
+    .win{
+      text-align: center;
+    }
+    .divline:nth-child(4){
+      display: none;
+    }
+}
+.divline{
+  height: auto;
+  width: .2px;
+  background-color: rgb(255, 0, 0);
+  margin: 0 2rem;
 }
 .spin{
   animation: spin .2s 3 linear ;
@@ -80,26 +130,33 @@ body{
 }
 .input{
   text-align: center;
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #1d2c2f;
+  border: 2px solid var(--input-border);
+  border-radius: 4px;
+}
+.input p{
+  
 }
 .turn{
-  color:rgb(250, 238, 4);
-  border: 1px solid white;
+  border: 1px solid rgb(255, 149, 68);
   text-align: center;
   font-size: 1.125rem;
   font-weight: bold;
 }
 .win{
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color:rgb(255, 255, 255);
-  background-color: rgba(30, 244, 40, 0.5);
+  color:rgb(139, 137, 137);
+  background-color: rgb(0, 0, 0);
   padding: 1.5rem;
-  margin-right: auto;
-  border-radius: 30px;
+  border-radius: 1rem;
   transition: all ease-in-out;
   font-size: 1.35rem;
   font-weight: 700;
+  margin-left: 0;
+  box-shadow: 3px 3px red, -1em 0 .4em olive;
 }
 
 @keyframes spin {
